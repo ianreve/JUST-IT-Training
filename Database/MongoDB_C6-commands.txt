@@ -1,0 +1,149 @@
+CRUD
+C - create
+R - Read / Retrieve
+U - Update
+D - Delete
+
+show dbs; // for listing all the existing databases
+
+db // for displaying the current database
+
+use <dbName> // create or switch to the database
+
+Creating a collection
+db.createCollection('First Collection');
+
+show collections; // for displaying all the collections in the (selected) database
+
+db.Second Collection.drop();
+
+// In case you have a space in your <collection name>, the above command (oine 12) WILL NOT work. Instead you can use the following to drop the same.
+db.getCollection("<collectionName WITH a SPACE>").drop()
+E.g., db.getCollection("Second Collection").drop();
+
+//Inserting data (document) in a collection
+// Once the command has run successfully, you would see the message ... "acknowledged = true"
+db.<collectionName>.insertOne({
+  'name': 'Samsung',
+  'price': 333,
+  'rating': 4.3,
+  'quantity':200,
+  'sold':100
+})
+
+//Inserting multiple documents in a collection.
+db.<collectionName>.insertMany(takes an array of documents)
+
+db.ThirdCollection.insertMany([
+  {
+  'name': 'Apple MacBook',
+  'price': 10000,
+  'rating': 4.5,
+  'quantity':20,
+  'sold':9
+  },
+  {
+  'name': 'Apple iPod',
+  'price': 22,
+  'rating': 5.9,
+  'quantity':123,
+  'sold':34
+  },
+  {
+  'name': 'Apple Iphone',
+  'price': '300',
+  'rating': 4.5,
+  'quantity':20000,
+  'sold':9999
+  }
+])
+
+// To see all the documents in a particular collection.
+db.<collectionName>.find()
+
+db.<CollectionName>.find().pretty() ==> displays the result in a more 'readable' way.
+
+db.<CollectionName>.find().count() ==> gives us a count of the rows in that collection.
+
+Searching/Querying the database:
+db.<CollectionName>.find({rating : 4.5});
+{rating : 4.5} == this is called a FILTER object. This enforces the filter, performs a 'search' in all the documents and return those that matches the search criteria.
+
+$gt greater than
+$gte greater than or equal to
+$lt less than
+$lte less than or equal to
+
+db.<CollectionName>.find({rating : {$gt:4}}).pretty();
+
+AND 
+db.<CollectionName>.find({rating : {$gt:4}, quantity : {$lt:999}}).pretty();
+Two conditions:
+a) rating is greater than 4, and
+b) quantity is less than 999.
+
+Only those records will appear when both these conditions are TRUE for them.
+
+OR
+db.<CollectionName>.find({$or : [{rating: {$lt:3}}, {price: {$gt:5000}}]}).pretty();
+
+PROJECTION
+
+db.<CollectionName>.find({rating: {$gt:5}}, {rating:1});
+The results will only show the 'rating', and rest of the fields are set to false, they will not be shown.
+
+If you want to display quantity (second column) after the rating, you can write:
+db.<CollectionName>.find({rating: {$gt:5}}, {rating:1, quantity:1}).pretty();
+
+Limiting our Output:
+db.<CollectionName>.find().pretty().limit(3);
+
+Sorting the data:
+The below will display the results sorted by rating in ASCENDING order:
+db.<CollectionName>.find().sort({rating:1}).pretty(); 
+
+If you want to display in DESCENDING order, use -1
+db.<CollectionName>.find().sort({rating:-1}).pretty();
+
+db.<CollectionName>.findOne({name:'Samsung'});
+The above will display the result as soon as it finds one row (matching the criteria and will stop the execution and WILL NOT SEARCH any further)
+
+UPDATE commands:
+db.<CollectionName>.updateOne({filter object}, {new value})
+
+update the rating to 3.3 where name - Samsung
+db.<CollectionName>.updateOne({name:'Samsung'}, {$set:{rating:3.3}});
+// UpdateOne will update the first record ONLY
+
+db.<CollectionName>.updateMany({name:'Samsung'}, {$set:{rating:3.88, quantity:1}});
+// The above will update ALL the records where name is Samsung.
+
+Another example:
+db.<CollectionName>.update({name:'Samsung'}, {name:'Samsung1', rating:0})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+"nUpserted" : 0 means it didn't have to do any INSERT in this update command.
+Basically ,if you want to create a NEW object in case there is no match in the reslts based on the search criteria.
+
+//Should you wish to insert the following [not matched/existing] record, you must use 'upsert
+db.<CollectionName>.update({name:'Samsung2'}, {water_resistant:'Yes', manufactured_in:'South Korea'}, {upsert:true})
+
+db.<CollectionName>.update({name:'Samsung3'}, {name:'Samsung3', water_resistant:'Yes', manufactured_in:'South Korea'}, {upsert:true})
+
+If you want to do 'insertion' [for the object not in the collection], then upsert:true.
+Else, by default, insertion will not take place and ONLY updation will happen.
+
+Update Operators in MongoDB
+a) increment - it will increment the 'apple ipod' record by 10, as shown below.
+db.<CollectionName>.update({name:'Apple iPod'}, {$inc:{price:10}});
+
+b) rename - to renaming a field - it will change the 'price' column to 'recent_price'.
+db.<CollectionName>.update({name:'Apple iPod'}, {$rename: {'price': 'recent_price'}})
+
+Delete 
+// The below will delete ONE record where it matches with the name = Samsung3
+db.<CollectionName>.deleteOne({name:'Samsung3'});
+
+//the below will delete ALL the records where it will match rating as 4.5
+db.ThirdCollection.deleteMany({rating:4.5});
+
