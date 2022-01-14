@@ -97,4 +97,62 @@ UPDATE Course SET startDate = '2022-10-02', Lesson_time = '01:00:00' WHERE Cours
 UPDATE Course SET startDate = '2022-12-02', Lesson_time = '00:30:00' WHERE CourseID = 3;
 UPDATE Course SET startDate = '2022-05-02', Lesson_time = '02:00:00' WHERE CourseID = 7;
 
+-- D.	Use the SQL MIN () and MAX () Functions to return the smallest and largest value 
+-- 1.	Of the LessonID column in the “lesson” table
+
+SELECT MIN(LessonID) FROM Lessons;
+
+-- 2.	Of the membersID column in the “members” table 
+
+SELECT MAX(MemberID) FROM Members;
+
+-- E.	Use the SQL COUNT (), AVG () and SUM () Functions for these:
+-- 1.	Count the total number of members in the “members” table
+ 
+ SELECT COUNT(MemberID) FROM Members;
+
+-- 2.	Count the total number of sessions in the” members” table ***** maybe actual meant for Course;
+
+SELECT COUNT(Session) FROM Course;
+
+-- 3.	Find the average session time for all “sessions” in course table 
+
+SELECT SEC_TO_TIME(AVG(TIME_TO_SEC(`Lesson_time`))) FROM Course;
+
+
+-- F.	WILDCARD queries (like operator)
+-- a)	Find all the people from the “members” table whose last name starts with A.
+	
+    SELECT * from Members Where Surname like "A%";
+    
+-- b)	Find all the people from the “members” table whose last name ends with A.
+
+SELECT * from Members Where Surname like "_%A%";
+
+-- c)	Find all the people from the “members” table that have "ab" in any position in the last name.
+
+  SELECT * from Members Where Surname like "%ab%";
+
+-- d)	Find all the people from the “members” table that that have "b" in the second position in their first name.
+
+SELECT * from Members Where Surname like "_b%";
+
+-- e)	Find all the people from the “members” table whose last name starts with "a" and are at least 3 characters in length:
+
+SELECT * from Members Where Surname like "A__%";
+
+-- f)	Find all the people from the “members” table whose last name starts with "a" and ends with "y"
+
+SELECT * from Members Where Surname like "a%y";
+
+-- g)	Find all the people from the “members” table whose last name does not starts with "a" and ends with "y"
+
+ SELECT * from Members Where Surname NOT LIKE "a%"; 
+
+-- G.	What do you understand by LEFT and RIGHT join? Explain with an example.
+
+
+
+
+
 
