@@ -1,6 +1,6 @@
-USE `leisure_centre`;
+use leisure_centre;
 
-
+-- Creating Table Course 
 CREATE TABLE `Course` (
 `CourseID` INT PRIMARY KEY NOT NULL , 
 `Level` INT,
@@ -10,6 +10,7 @@ CREATE TABLE `Course` (
 `Lesson_time` time
 );
 
+-- Creating Table  Lessons
 CREATE TABLE `Lessons` (
 `LessonID` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 `CourseID` INT,
@@ -18,8 +19,7 @@ FOREIGN KEY(`CourseID`) REFERENCES `Course`(`CourseID`) ON UPDATE CASCADE,
 FOREIGN KEY (`MemberID`) REFERENCES `Members`(`MemberID`) ON UPDATE CASCADE
 );
 
-
-
+-- Creating Table Members
 CREATE TABLE `Members`(
 `MemberID`INT PRIMARY KEY AUTO_INCREMENT ,
 `FirstName` VARCHAR(20),
@@ -29,12 +29,20 @@ CREATE TABLE `Members`(
 `City` VARCHAR(20)
 
 );
+
+--  Data insertion 
 INSERT INTO `Lessons` (`LessonID`) VALUES (1000),(2000),(3000),(4000),(5000),(6000),(7000);
 
 
 INSERT INTO `Members`(`MemberID`,`FirstName`,`Surname`,`DOB`,`Address`,`City` ) VALUES
 
- (56,'Omar','Colmore ','1975-05-02', '5 Clarendon Road','London');
+ (1,'John','Snow','1980-01-01', '1 Stark House','WinterFell'),
+ (2,'Brian','Jonas','1985-10-02', '897 Long Airport Avenue','NYC'),
+ (3,'Bruce','Jonas','1985-10-02', 'PR 334 Sentrum Bergen','Norway'),
+ (4,'Omar','Colmore','1975-05-02', '5 Clarendon Road','London'),
+ (5,'King','Jean','1990-10-01', '8489 Strong St','Las Vegas'),
+ (6,'Ferguson','Peter','1960-11-25', '636 St Kilda Road Level','Victoria'),
+ (7,'Bergulfsen','Jonas ','1995-10-01', ' 5677 Strong St. San Rafael','CA');
  
  
 INSERT INTO `Course` (`CourseID`,`Level`,`Session`,`Instructor`,`StartDate`,`Lesson_time` ) VALUES
@@ -48,22 +56,22 @@ INSERT INTO `Course` (`CourseID`,`Level`,`Session`,`Instructor`,`StartDate`,`Les
 (7,1, 'aerobics', 'Night King','2022-01-20','08:00:00');
    
 -- Assign Lessons Member ID 
- UPDATE Lessons Set MemberID  = 1  Where LessonID = 1000;
-  UPDATE Lessons Set MemberID  = 2  Where LessonID = 2000;
-   UPDATE Lessons Set MemberID  = 3  Where LessonID = 3000;
-    UPDATE Lessons Set MemberID  = 4  Where LessonID = 4000;
-     UPDATE Lessons Set MemberID  = 5  Where LessonID = 5000;
-      UPDATE Lessons Set MemberID  = 6  Where LessonID = 6000;
-       UPDATE Lessons Set MemberID  = 7  Where LessonID = 7000;
+	UPDATE Lessons Set MemberID  = 1  Where LessonID = 1000;
+	UPDATE Lessons Set MemberID  = 2  Where LessonID = 2000;
+	UPDATE Lessons Set MemberID  = 3  Where LessonID = 3000;
+	UPDATE Lessons Set MemberID  = 4  Where LessonID = 4000;
+	UPDATE Lessons Set MemberID  = 5  Where LessonID = 5000;
+	UPDATE Lessons Set MemberID  = 6  Where LessonID = 6000;
+	UPDATE Lessons Set MemberID  = 7  Where LessonID = 7000;
  
 -- Assign Lessons Course ID
- UPDATE Lessons Set CourseID = 1 Where LessonID = 1000;
-  UPDATE Lessons Set CourseID = 2 Where LessonID = 2000;
-   UPDATE Lessons Set CourseID = 3 Where LessonID = 3000;
-    UPDATE Lessons Set CourseID = 4 Where LessonID = 4000;
-     UPDATE Lessons Set CourseID = 5 Where LessonID = 5000;
-      UPDATE Lessons Set CourseID = 6 Where LessonID = 6000;
-       UPDATE Lessons Set CourseID = 7 Where LessonID = 7000;
+	UPDATE Lessons Set CourseID = 1 Where LessonID = 1000;
+	UPDATE Lessons Set CourseID = 2 Where LessonID = 2000;
+	UPDATE Lessons Set CourseID = 3 Where LessonID = 3000;
+	UPDATE Lessons Set CourseID = 4 Where LessonID = 4000;
+	UPDATE Lessons Set CourseID = 5 Where LessonID = 5000;
+	UPDATE Lessons Set CourseID = 6 Where LessonID = 6000;
+	UPDATE Lessons Set CourseID = 7 Where LessonID = 7000;
 
 -- Exercise 
 -- A.	Use the SQL AND, OR and NOT Operators in your query (The WHERE clause can be combined with AND, OR, and NOT operators)
