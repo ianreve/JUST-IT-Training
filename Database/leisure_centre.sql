@@ -1,4 +1,7 @@
 use leisure_centre;
+drop database leisure_centre;
+create database leisure_centre;
+show tables;
 
 -- Creating Table Course 
 CREATE TABLE `Course` (
@@ -8,15 +11,6 @@ CREATE TABLE `Course` (
 `Instructor` VARCHAR(50),
 `StartDate` date,
 `Lesson_time` time
-);
-
--- Creating Table  Lessons
-CREATE TABLE `Lessons` (
-`LessonID` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`CourseID` INT,
-`MemberID` INT,
-FOREIGN KEY(`CourseID`) REFERENCES `Course`(`CourseID`) ON UPDATE CASCADE,
-FOREIGN KEY (`MemberID`) REFERENCES `Members`(`MemberID`) ON UPDATE CASCADE
 );
 
 -- Creating Table Members
@@ -29,6 +23,16 @@ CREATE TABLE `Members`(
 `City` VARCHAR(20)
 
 );
+-- Creating Table  Lessons
+CREATE TABLE `Lessons` (
+`LessonID` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`CourseID` INT,
+`MemberID` INT,
+FOREIGN KEY(`CourseID`) REFERENCES `Course`(`CourseID`) ON UPDATE CASCADE,
+FOREIGN KEY (`MemberID`) REFERENCES `Members`(`MemberID`) ON UPDATE CASCADE
+);
+
+
 
 --  Data insertion 
 INSERT INTO `Lessons` (`LessonID`) VALUES (1000),(2000),(3000),(4000),(5000),(6000),(7000);
@@ -135,7 +139,7 @@ SELECT SEC_TO_TIME(AVG(TIME_TO_SEC(`Lesson_time`))) FROM Course;
     
 -- b)	Find all the people from the “members” table whose last name ends with A.
 
-SELECT * from Members Where Surname like "_%A%";
+SELECT * from Members Where Surname like "%e";
 
 -- c)	Find all the people from the “members” table that have "ab" in any position in the last name.
 
@@ -155,9 +159,30 @@ SELECT * from Members Where Surname like "a%y";
 
 -- g)	Find all the people from the “members” table whose last name does not starts with "a" and ends with "y"
 
- SELECT * from Members Where Surname NOT LIKE "a%"; 
+ SELECT * from Members Where Members.Surname  NOT LIKE "a%" AND Members.Surname like "%e%";
 
 -- G.	What do you understand by LEFT and RIGHT join? Explain with an example.
+
+SELECT  Lessons.MemberID, Members.FirstName, Members.Surname,  Lessons.LessonID
+FROM Lessons
+INNER JOIN Members
+ ON Lessons.MemberID = Members.MemberID ;
+
+
+SELECT   Members.FirstName, Members.Surname,  Lessons.LessonID, Lessons.MemberID 
+FROM Members
+Left JOIN Lessons
+ ON Members.MemberID = Lessons.LessonID;
+ 
+ 
+ SELECT  Members.FirstName, Members.Surname,  Lessons.LessonID, Lessons.MemberID
+FROM Lessons
+RIGHT JOIN Members
+ ON Lessons.MemberID = Members.MemberID 
+ 
+ 
+
+
 
 
 
