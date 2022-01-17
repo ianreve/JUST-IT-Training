@@ -134,12 +134,13 @@ SELECT SEC_TO_TIME(AVG(TIME_TO_SEC(`Lesson_time`))) FROM Course;
 
 -- F.	WILDCARD queries (like operator)
 -- a)	Find all the people from the “members” table whose last name starts with A.
+-- replaced the seach values to fit the data in the tables to j and s
 	
     SELECT * from Members Where Surname like "A%";
     
 -- b)	Find all the people from the “members” table whose last name ends with A.
 
-SELECT * from Members Where Surname like "%e";
+SELECT * from Members Where Surname like "%A";
 
 -- c)	Find all the people from the “members” table that have "ab" in any position in the last name.
 
@@ -155,7 +156,7 @@ SELECT * from Members Where Surname like "A__%";
 
 -- f)	Find all the people from the “members” table whose last name starts with "a" and ends with "y"
 
-SELECT * from Members Where Surname like "a%y";
+ SELECT * from Members Where Members.Surname LIKE "a%" AND Members.Surname like "%y%";
 
 -- g)	Find all the people from the “members” table whose last name does not starts with "a" and ends with "y"
 
@@ -168,13 +169,13 @@ FROM Lessons
 INNER JOIN Members
  ON Lessons.MemberID = Members.MemberID ;
 
-
+ --  Left  Join
 SELECT   Members.FirstName, Members.Surname,  Lessons.LessonID, Lessons.MemberID 
 FROM Members
 Left JOIN Lessons
  ON Members.MemberID = Lessons.LessonID;
  
- 
+ --  Right Join
  SELECT  Members.FirstName, Members.Surname,  Lessons.LessonID, Lessons.MemberID
 FROM Lessons
 RIGHT JOIN Members
