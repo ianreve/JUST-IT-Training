@@ -58,10 +58,3 @@ print("Ascending order :", list4)
 list4.sort(reverse=True); # reverse order
 print("Descending order :", list4)
 
-# ~list exercise
-# create a list of 6 items
-# insert a new item in postion 3
-# add another item to the list
-# remove an item by value
-# remove the item at index position 3
-# for every list manipulation print the list
