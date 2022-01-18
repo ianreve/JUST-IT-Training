@@ -51,13 +51,13 @@ INSERT INTO `Members`(`MemberID`,`FirstName`,`Surname`,`DOB`,`Address`,`City` ) 
  
 INSERT INTO `Course` (`CourseID`,`Level`,`Session`,`Instructor`,`StartDate`,`Lesson_time` ) VALUES
 
- (1,'1','Swimming ','Joe Martin', '2022-01-17','09:00:00'),
-(2,'1','Tennis ','Martin Green', '2022--02-11','10:0:00'),
-(3,'2','Yoga ','Janice Carter', '2022-03-27','11:00:00'),
-(4,'1','Cadio ','Josept White', '2022-04-27','11:00:00'),
-(5,'3','Tennis ','ALfie Murdock', '2022-08-10','12:00:00'),
-(6,'2','Badmiton','Janice Carter', '2022-03-27','11:00:00'),
-(7,1, 'aerobics', 'Night King','2022-01-20','08:00:00');
+ (1,'1','Morning','Joe Martin', '2022-01-17','09:00:00'),
+(2,'1','Morning','Martin Green', '2022--02-11','10:0:00'),
+(3,'2','Morning','Janice Carter', '2022-03-27','11:00:00'),
+(4,'1','Morning','Josept White', '2022-04-27','11:00:00'),
+(5,'3','Afternoon','ALfie Murdock', '2022-08-10','12:00:00'),
+(6,'2','Morning','Janice Carter', '2022-03-27','11:00:00'),
+(7,1, 'Morning', 'Night King','2022-01-20','08:00:00');
    
 -- Assign Lessons Member ID 
 	UPDATE Lessons Set MemberID  = 1  Where LessonID = 1000;
@@ -182,11 +182,152 @@ RIGHT JOIN Members
  ON Lessons.MemberID = Members.MemberID 
  
  
+ -- ------------------------------------------------------------------------------
 
 
+db.Members.insertMany([
+{'MemberID': 1,
+'Firstname': 'John',
+'Surname':'Snow',
+'DOB':new Date ('1980-01-01'),
+'Address':'1 Stark House',
+'City':'WinterFell'
+},
+{'MemberID': 2,
+'Firstname': 'Brian',
+'Surname':'Jonas',
+'DOB':new Date ('1985-10-02'),
+'Address':'897 Long Airport Avenue',
+'City':'NYC'
+},
+{'MemberID': 3,
+'Firstname': 'Bruce',
+'Surname':'Jonas',
+'DOB':new Date ('1985-10-02'),
+'Address':'PR 334 Sentrum Bergen',
+'City':'Norway'
+},
+{'MemberID': 4,
+'Firstname': 'Omar',
+'Surname':'Colmore',
+'DOB':new Date ('1975-05-02'),
+'Address':'5 Clarendon Road',
+'City':'London'
+},
+{'MemberID': 5,
+'Firstname': 'King',
+'Surname':'Jean',
+'DOB':new Date ('1990-10-01'),
+'Address':'8489 Strong St',
+'City':'Las Vegas'
+},
+{'MemberID': 6,
+'Firstname': 'Ferguson',
+'Surname':'Peter',
+'DOB':new Date ('1960-11-25'),
+'Address':'636 St Kilda Road Level',
+'City':'Victoria'
+},
+{'MemberID': 7,
+'Firstname': 'Bergulfsen',
+'Surname':'Jonas',
+'DOB':new Date ('1995-10-01'),
+'Address':'5677 Strong St. San Rafael',
+'City':'CA'
+}])
+
+db.Course.insertMany([
+{'CourseID': 1,
+'Level': 1,
+'Session':'Swimming',
+'Instructor':'Joe Martin',
+'StartDate': new Date ('2022-01-17'),
+'Lesson_time': time: new ISODate(' 09:00:00')
+}
+
+])
+
+db.Course.insertMany([{'CourseID': 1,
+'Level': 1,
+'Session':'Morning',
+'Instructor':'Joe Martin',
+'StartDate': new Date ('2022-01-17'),
+'Lesson_time':' 09:00:00'
+},
+{'CourseID':2,
+'Level': 1,
+'Session':'Morning',
+'Instructor':'Martin Green',
+'StartDate': new Date ('2022-02-11'),
+'Lesson_time':' 10:00:00'
+},
+{'CourseID': 3,
+'Level': 2,
+'Session':'Morning',
+'Instructor':'Janice Carter',
+'StartDate': new Date ('2022-03-27'),
+'Lesson_time':' 11:00:00'
+},
+{'CourseID': 4,
+'Level': 1,
+'Session':'Morning',
+'Instructor':'Josept White',
+'StartDate': new Date ('22022-04-27'),
+'Lesson_time':' 11:00:00'
+},
+{'CourseID': 5,
+'Level': 3,
+'Session':'Afternoon',
+'Instructor':'ALfie Murdock',
+'StartDate': new Date ('2022-08-10'),
+'Lesson_time':' 12:00:00'
+},
+{'CourseID': 6,
+'Level': 2,
+'Session':'Morning',
+'Instructor':'Janice Carter',
+'StartDate': new Date ('2022-03-27'),
+'Lesson_time':' 11:00:00'
+},
+{'CourseID': 7,
+'Level': 1,
+'Session':'Morning',
+'Instructor':'Night King',
+'StartDate': new Date ('2022-01-20'),
+'Lesson_time':' 08:00:00'
+}
+])
 
 
-
-
+db.Lessons.insertMany([
+{
+'LessonID': 1000,
+ 'CourseID':1,
+ 'MemberID':1},
+ {
+ 'LessonID': 2000,
+ 'CourseID':2,
+ 'MemberID':2},
+ {
+ 'LessonID': 3000,
+ 'CourseID':3,
+ 'MemberID':3},
+ {
+ 'LessonID': 4000,
+ 'CourseID':4,
+ 'MemberID':4},
+ {
+ 'LessonID': 5000,
+ 'CourseID':5,
+ 'MemberID':5},
+ {
+ 'LessonID': 6000,
+ 'CourseID':6,
+ 'MemberID':6},
+ {
+ 'LessonID': 7000,
+ 'CourseID':7,
+ 'MemberID':7}
+ ])
 
 
