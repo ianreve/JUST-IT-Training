@@ -7,10 +7,10 @@ import parking
 
 
 printValues.welcome()
-# time.sleep(3)
+time.sleep(3)
 printValues.ticketsPrices()
 
-# )
+
 
 numOfAdults = int(input("\nHow many Adult tickets? : "))
 numOfChild = int(input("How many Child tickets? : "))
