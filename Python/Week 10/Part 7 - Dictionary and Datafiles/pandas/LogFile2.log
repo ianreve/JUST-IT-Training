@@ -1,0 +1,3 @@
+ERROR:root:You can't divide a number by zero
+ Enter a number that is not 0
+INFO:root:Division in progress
