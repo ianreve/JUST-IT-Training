@@ -5,4 +5,4 @@ def readSongs():
     row = cursor.fetchall()
     for record in row:
         print(record)
-readSongs()
+# readSongs()

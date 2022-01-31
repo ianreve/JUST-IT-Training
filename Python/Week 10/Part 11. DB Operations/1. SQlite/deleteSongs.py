@@ -21,4 +21,4 @@ def deleteSongs():
     finally:
            conn.close()
 
-deleteSongs()
+# deleteSongs()

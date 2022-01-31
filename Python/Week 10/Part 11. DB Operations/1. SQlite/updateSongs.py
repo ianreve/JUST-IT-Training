@@ -24,4 +24,4 @@ def update():
         print(f"Song {idField} not updated")
     finally:
         conn.close()
-update()
+# update()
