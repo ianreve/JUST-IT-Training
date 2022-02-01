@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>{{}}</title>
+    {% else %}
+    <title>Music App</title>
+    {% endif %}
+</head>
+ <!-- nav menu starts here -->
+<nav>
+    <li><a href="{{url_for('home')}}">Home</a></li>
+    <li><a href="{{url_for('about')}}">About</a></li>
+    <li><a href="{{url_for('addsongs')}}">Add Songs</a></li>
+    <li><a href="{{url_for('songs')}}">Songs</a></li>
+    
+</nav>
+<!-- nav menu ends here -->
+<body>
+
+</body>
+
+</html>
